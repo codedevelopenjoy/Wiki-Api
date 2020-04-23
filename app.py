@@ -19,7 +19,9 @@ def home():
             return render_template('index.html',code='1',resp=resp)
         except wikipedia.exceptions.DisambiguationError as e:
             options = e.options
-            return render_template('index.html',code='2',resp=str(options))
+            for x in options:
+                resp += x + '<br>'
+            return render_template('index.html',code='2',resp=resp)
         except wikipedia.exceptions.PageError as e:
             resp = 'Not Found'
             return render_template('index.html',code='3',resp=resp)
