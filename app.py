@@ -12,10 +12,22 @@ def home():
     q = request.args.get('q')
     if k in KEY:
         wikipedia.set_lang(str(l))
-        summary = wikipedia.summary(str(q))
-        return render_template('index.html',resp=str(summary))
+        resp = ''
+        options = list()
+        try:
+            resp = wikipedia.summary(str(q))
+            return render_template('index.html',code='1',resp=resp)
+        except wikipedia.exceptions.DisambiguationError as e:
+            options = e.options
+            return render_template('index.html',code='2',resp=str(options))
+        except wikipedia.exceptions.PageError as e:
+            resp = 'Not Found'
+            return render_template('index.html',code='3',resp=resp)
+        except Exception as e:
+            pass
+            return render_template('index.html',code='4',resp='Error')
     else:
-        return render_template('index.html',resp='INVALID KEY')
+        return render_template('index.html',code='5',resp='INVALID KEY')
 
 if __name__ == "__main__":
     app.run(debug=True)
