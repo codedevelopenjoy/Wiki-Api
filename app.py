@@ -20,7 +20,7 @@ def home():
         except wikipedia.exceptions.DisambiguationError as e:
             options = e.options
             for x in options:
-                resp += x + '\n'
+                resp += x + ' $$$$$$$$$$ '
             return render_template('index.html',code='2',resp=resp)
         except wikipedia.exceptions.PageError as e:
             resp = 'Not Found'
