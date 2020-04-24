@@ -17,7 +17,7 @@ def home():
             wikipedia.set_lang(str(l))
             summary = wikipedia.summary(str(q))
             output["content"] = summary
-            images = summary.images
+            images = wikipedia.page(str(q)).images
             img = {}
             index = 1
             for image in images:
