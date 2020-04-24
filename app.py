@@ -15,8 +15,8 @@ def home():
         try:
             output = {}
             wikipedia.set_lang(str(l))
-            summary = wikipedia.page(str(q))
-            output["content"] = summary.content
+            summary = wikipedia.summary(str(q))
+            output["content"] = summary
             images = summary.images
             img = {}
             index = 1
@@ -34,6 +34,8 @@ def home():
             for option in e.options:
                 temp1['o'+str(index)] = option
                 index=index+1
+                if index == 10:
+                	break
             output['options'] = temp1
             output['code'] = '2'
             o = json.dumps(output)
