@@ -21,8 +21,11 @@ def home():
             img = {}
             index = 1
             for image in images:
-                img["img"+str(index)] = image
-                index=index+1
+                if image[-3:] != 'svg':
+                    img["img"+str(index)] = image
+                    index=index+1
+                    if index == 7:
+                        break
             output["images"] = img
             output["code"] = '1'
             o = json.dumps(output)
