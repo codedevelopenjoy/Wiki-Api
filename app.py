@@ -21,7 +21,7 @@ def home():
             img = {}
             index = 1
             for image in images:
-                if image[-3:] != 'svg':
+                if image[-3:] in ['jpg','peg','bmp','png']:
                     img["img"+str(index)] = image
                     index=index+1
                     if index == 7:
